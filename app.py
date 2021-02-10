@@ -10,43 +10,39 @@ categories = {"recommended": "Recommended", "tovisit": "Places To Go", "visited"
 UP_ACTION = "\u2197"
 DEL_ACTION = "X"
 
-
 @app.route("/<category>", methods=["GET", "POST"])
 def locations(category):
-    locations = visit.get_list_by_category(category)
-    ## Check the request for form data and process
-    if request.method == "POST":
-        print(request.form.items())
+  locations = visit.get_list_by_category(category)
+  ## Check the request for form data and process
+  if request.method == "POST":
+    print(request.form.items())
+    [(name, action)] = request.form.items()
 
-        [(name, action)] = request.form.items()
-
-
-        if action == UP_ACTION:
-            visit.moveup(name)
-        elif action == DEL_ACTION:
-            visit.delete(name)
-    ## Return the main template with variables
-    return render_template("locations.html",
-                           category=category,
-                           categories=categories,
-                           locations=locations)
-
+    if action == UP_ACTION:
+      visit.moveup(name)
+    elif action == DEL_ACTION:
+      visit.delete(name)
+  ## Return the main template with variables
+  return render_template("locations.html",
+  category = category,
+  categories = categories,
+  locations = locations)
 
 @app.route("/add_location", methods=["POST"])
 def add_location():
-    ## Validate and collect the form data
+  ## Validate and collect the form data
 
-    if True:
-        name = None
-        description = None
-        category = None
-        visit.add(name, description, category)
+  if True:
+      name=None
+      description=None
+      category=None
+      visit.add(name, description, category)
 
-    ## Redirect to locations route function
-    return ""
-
+  ## Redirect to locations route function
+  return ""
 
 @app.route("/")
 def index():
-    ## Redirect to locations route function
-    return ""
+
+  ## Redirect to locations route function
+  return ""

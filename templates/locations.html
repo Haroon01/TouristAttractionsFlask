@@ -27,12 +27,12 @@
           <td class="desc">{{ location.description }}</td> <!-- insert location description here -->
           <td class="btns">
             <!-- start if statement here -->
-            {% if location.category is in ["recommended", "tovisit"] %}
+            {% if location.category in ["recommended", "tovisit"] %}
             <form method="POST">
-              <input type="submit" class="up" name="" value=&#8599;> <!-- set name attribute here -->
-              {{ location.name }}
-              <input type="submit" class="del" name="" value="X"> <!-- set name attribute here -->
-              {{ location.name }}
+              <input type="submit" class="up" name="{{ location.name }}" value=&#8599;> <!-- set name attribute here -->
+
+              <input type="submit" class="del" name="{{ location.name }}" value="X"> <!-- set name attribute here -->
+
             </form>
             <!-- end if statement here -->
             {% endif %}
