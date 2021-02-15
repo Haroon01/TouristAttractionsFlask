@@ -43,9 +43,8 @@
     </tbody>
   </table>
 
-  <form class="addform" action="" method="POST"> <!-- set action attribute here -->
-    <!-- call hidden_tag() here -->
-
+  <form class="addform" action="{{ url_for('add_location') }}" method="POST"> <!-- set action attribute here -->
+    <!-- call hidden_tag() here -->{{ add_location.hidden_tag }}
     <table>
       <colgroup>
         <col style="width: 40%">
@@ -54,13 +53,13 @@
       </colgroup>
       <tbody>
         <tr>
-          <td></td> <!-- insert location name label here -->
-          <td></td> <!-- insert location description label here -->
-          <td></td> <!-- insert location category label here -->
+          <td>{{ add_location.name.label }}</td> <!-- insert location name label here -->
+          <td>{{ add_location.description.label }}</td> <!-- insert location description label here -->
+          <td>{{ add_location.category.label }}</td> <!-- insert location category label here -->
         </tr>
         <tr>
-          <td></td> <!-- insert add_location name here -->
-          <td></td> <!-- insert add_location description here -->
+          <td>{{ add_location.name }}</td> <!-- insert add_location name here -->
+          <td>{{ add_location.description }}</td> <!-- insert add_location description here -->
           <td>
             <!-- begin for loop here -->
 

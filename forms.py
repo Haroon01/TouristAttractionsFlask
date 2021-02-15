@@ -10,6 +10,15 @@ class FieldsRequiredForm(FlaskForm):
         render_kw.setdefault("required", True)
       return super().render_field(field, render_kw)
 
+
 categories = [("recommended","Recommended"), ("tovisit", "Places To Go"), ("visited", "Visited!!!")]
 
 ## Create Form Here
+
+
+class AddLocationForm(FieldsRequiredForm):
+  def __init__(self):
+    self.name = StringField("Location Name", validators=[DataRequired()])
+    self.description = TextAreaField("Location Description", validators=[DataRequired()])
+    self.category = RadioField("Categories", choices=categories)
+    self.submit = SubmitField("Add Location")
