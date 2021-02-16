@@ -25,13 +25,12 @@ def locations(category):
     elif action == DEL_ACTION:
       visit.delete(name)
 
-  add_location_class = AddLocationForm()
   ## Return the main template with variables
   return render_template("locations.html",
   category = category,
   categories = categories,
   locations = locations,
-  add_location = add_location_class)
+  add_location = AddLocationForm())
 
 @app.route("/add_location", methods=["POST"])
 def add_location():

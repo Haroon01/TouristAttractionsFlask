@@ -17,8 +17,7 @@ categories = [("recommended","Recommended"), ("tovisit", "Places To Go"), ("visi
 
 
 class AddLocationForm(FieldsRequiredForm):
-  def __init__(self):
-    self.name = StringField("Location Name", validators=[DataRequired()])
-    self.description = TextAreaField("Location Description", validators=[DataRequired()])
-    self.category = RadioField("Categories", choices=categories)
-    self.submit = SubmitField("Add Location")
+    name = StringField("Location Name", validators=[DataRequired()])
+    description = TextAreaField("Location Description", validators=[DataRequired()])
+    category = RadioField("Categories", choices=categories)
+    submit = SubmitField("Add Location")
