@@ -5,7 +5,7 @@ from forms import AddLocationForm
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'SECRET_PROJECT'
 
-form = AddLocationForm()
+
 visit = Locations()
 categories = {"recommended": "Recommended", "tovisit": "Places To Go", "visited": "Visited!!!", }
 
@@ -25,28 +25,31 @@ def locations(category):
     elif action == DEL_ACTION:
       visit.delete(name)
 
+  form = AddLocationForm()
+
   ## Return the main template with variables
   return render_template("locations.html",
   category = category,
   categories = categories,
   locations = locations,
-  add_location = AddLocationForm())
+  add_location = form)
 
 @app.route("/add_location", methods=["POST"])
 def add_location():
   ## Validate and collect the form data
-
-  if True:
-      name=None
-      description=None
-      category=None
+  global category
+  add_form = AddLocationForm()
+  if add_form.validate_on_submit():
+      name = add_form.name.data
+      description = add_form.description.data
+      category = add_form.category.data
       visit.add(name, description, category)
 
   ## Redirect to locations route function
-  return ""
+  redirect(url_for("locations", category=category, _external=True, _scheme='https'))
 
 @app.route("/")
 def index():
 
   ## Redirect to locations route function
-  return ""
+  redirect(url_for("locations", category="recommended", _external=True, _scheme='https'))
